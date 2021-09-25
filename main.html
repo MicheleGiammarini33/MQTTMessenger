@@ -6,7 +6,7 @@
 <script src="script.js"></script>
 <link rel="stylesheet" type="text/css" href="style.css"/>
 </head>
-MQTT Messenger 1.0.4
+MQTT Messenger 1.0.5
 <hr>
 <label>Broker URL:</label><input type="text" id="brokerURL" value="test.mosquitto.org">
 <br><br>
@@ -16,6 +16,7 @@ MQTT Messenger 1.0.4
 <br><br>
 <input type="button" value="Connect" onclick="connect()">
 <input type="button" value="Disconnect" id="disconnect" onclick="disconnect()" disabled>
+<input type="button" value="Clear messages" onclick="document.getElementById('messages').value = ''">
 <hr>
 <textarea id="messages" rows="25" cols="90" placeholder="Messages appears here ..." readonly></textarea>
 <br><br>

@@ -1,25 +1,30 @@
 let client = null;
 
 function connect() {
- let brokerURL = document.getElementById("brokerURL").value;
- let port = parseInt(document.getElementById("port").value);
+ let brokerURL = document.getElementById("brokerURL").value.trim();
+ let port = parseInt(document.getElementById("port").value.trim());
  let date = new Date().toLocaleString().replace(",","");
  updateMessages(date + " | Connecting to " + brokerURL + " on port " + port);
  client = new Paho.Client(brokerURL, port, "");
  client.onConnectionLost = onConnectionLost;
  client.onMessageArrived = onMessageArrived;
- client.connect({onSuccess: onConnect, useSSL: true});
+ client.connect({onSuccess: onConnect, onFailure: onFailure, useSSL: true});
 }
 
 function onConnect() {
  let topic = document.getElementById("topic").value;
- let date = new Date().toLocaleString().replace(",","");
+ let date = new Date().toLocaleString().replace(",", "");
  updateMessages(date + " | Subscribing to topic " + topic);
  client.subscribe(topic);
  date = new Date().toLocaleString().replace(",","");
  updateMessages(date + " | Connected");
  document.getElementById("disconnect").disabled = false;
  checkText();
+}
+
+function onFailure(obj) {
+ let date = new Date().toLocaleString().replace(",", "");
+ updateMessages(date + " | " + obj.errorMessage);	
 }
 
 function disconnect() {
