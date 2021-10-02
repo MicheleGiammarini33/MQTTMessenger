@@ -47,6 +47,8 @@ function onConnectionLost(message) {
 function onMessageArrived(message) {
  let date = new Date().toLocaleString().replace(",","");
  updateMessages(date + " | " + message.destinationName + " | " + message.payloadString);
+ let textarea = document.getElementById("messages");
+ textarea.scrollTop = textarea.scrollHeight;
 }
 
 function updateMessages(message) {
