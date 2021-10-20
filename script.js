@@ -3,8 +3,8 @@ let client = null;
 function connect() {
  let brokerURL = document.getElementById("brokerURL").value.trim();
  let port = parseInt(document.getElementById("port").value.trim());
- let date = new Date().toLocaleString().replace(",","");
- updateMessages(date + " | Connecting to " + brokerURL + " on port " + port);
+ let date = new Date().toLocaleString().replace(",", "");
+ updateMessages(date + " | Connecting to " + brokerURL + " on port " + port, "logs");
  client = new Paho.Client(brokerURL, port, "");
  client.onConnectionLost = onConnectionLost;
  client.onMessageArrived = onMessageArrived;
@@ -14,46 +14,46 @@ function connect() {
 function onConnect() {
  let topic = document.getElementById("topic").value;
  let date = new Date().toLocaleString().replace(",", "");
- updateMessages(date + " | Subscribing to topic " + topic);
+ updateMessages(date + " | Subscribing to topic " + topic, "logs");
  client.subscribe(topic);
  date = new Date().toLocaleString().replace(",","");
- updateMessages(date + " | Connected");
+ updateMessages(date + " | Connected", "logs");
  document.getElementById("disconnect").disabled = false;
  checkText();
 }
 
 function onFailure(obj) {
  let date = new Date().toLocaleString().replace(",", "");
- updateMessages(date + " | " + obj.errorMessage);	
+ updateMessages(date + " | " + obj.errorMessage, "logs");	
 }
 
 function disconnect() {
  client.disconnect();
- let date = new Date().toLocaleString().replace(",","");
- updateMessages(date + " | Disconnected");
+ let date = new Date().toLocaleString().replace(",", "");
+ updateMessages(date + " | Disconnected", "logs");
  document.getElementById("disconnect").disabled = true;
  document.getElementById("send").disabled = true;
 }
 
 function onConnectionLost(message) {
  if(message.errorCode !== 0) {
-  let date = new Date().toLocaleString().replace(",","");
-  updateMessages(date + " | Connection lost: " + message.errorMessage);
+  let date = new Date().toLocaleString().replace(",", "");
+  updateMessages(date + " | Connection lost: " + message.errorMessage, "logs");
   document.getElementById("disconnect").disabled = true;
   document.getElementById("send").disabled = true;
  }
 }
 
 function onMessageArrived(message) {
- let date = new Date().toLocaleString().replace(",","");
- updateMessages(date + " | " + message.destinationName + " | " + message.payloadString);
- let textarea = document.getElementById("messages");
- textarea.scrollTop = textarea.scrollHeight;
+ let date = new Date().toLocaleString().replace(",", "");
+ updateMessages(date + " | " + message.destinationName + " | " + message.payloadString, "messages");
 }
 
-function updateMessages(message) {
- let messages = document.getElementById("messages").value !== "" ? document.getElementById("messages").value + "\n" : document.getElementById("messages").value;
- document.getElementById("messages").value = messages + message;
+function updateMessages(message, textAreaID) {
+ let textarea = document.getElementById(textAreaID);
+ let messages = textarea.value !== "" ? textarea.value + "\n" : textarea.value;
+ textarea.value = messages + message;
+ textarea.scrollTop = textarea.scrollHeight;
 }
 
 function sendMessage() {

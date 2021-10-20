@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>MQTT Messenger 1.0.5</title>
+<title>MQTT Messenger 1.0.6</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.1.0/paho-mqtt.min.js"></script>
 <script src="script.js"></script>
 <link rel="stylesheet" type="text/css" href="style.css"/>
 </head>
-MQTT Messenger 1.0.5
+MQTT Messenger 1.0.6
 <hr>
 <label>Broker URL:</label><input type="text" id="brokerURL">
 <br><br>
@@ -18,11 +18,12 @@ MQTT Messenger 1.0.5
 <input type="button" value="Disconnect" id="disconnect" onclick="disconnect()" disabled>
 <input type="button" value="Clear messages" onclick="document.getElementById('messages').value = ''">
 <hr>
+<textarea id="logs" rows="5" cols="90" placeholder="Logs appears here ..." readonly></textarea>
+<hr>
 <textarea id="messages" rows="25" cols="90" placeholder="Messages appears here ..." readonly></textarea>
 <br><br>
-<input type="text" id="username" placeholder="Username">
-<br><br>
-<textarea id="message" rows="2" cols="90" placeholder="Enter your message" oninput="checkText()"></textarea>
-<br><br>
+<input type="text" id="username" placeholder="Enter your username here ...">
 <input type="button" value="Send message" id="send" onclick="sendMessage()" disabled>
+<br><br>
+<textarea id="message" rows="2" cols="90" placeholder="Enter your message here ..." oninput="checkText()"></textarea>
 </html>
