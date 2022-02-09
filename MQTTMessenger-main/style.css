@@ -1,0 +1,18 @@
+body {   
+     background-color: lightgrey;
+}
+
+input[type=button] {
+	background-color: white;
+	width: 150px;
+}
+
+input[type=number], input[type=text]  {
+	width: 252px;
+}
+
+label {  
+    float: left;
+    width: 90px;
+    text-align: left;
+}
