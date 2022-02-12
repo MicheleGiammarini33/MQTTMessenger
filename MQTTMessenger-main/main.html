@@ -6,24 +6,25 @@
 <script src="script.js"></script>
 <link rel="stylesheet" type="text/css" href="style.css"/>
 </head>
-MQTT Messenger 1.0.6
-<hr>
-<label>Broker URL:</label><input type="text" id="brokerURL">
+
+<input type="text" placeholder="Broker URL:" id="brokerURL">
 <br><br>
-<label>Port:</label><input type="number" id="port">
+<input type="number" placeholder="Port:" id="port">
 <br><br>
-<label>Topic:</label><input type="text" id="topic">
+<input type="text" placeholder="Topic:" id="topic">
 <br><br>
 <input type="button" value="Connect" onclick="connect()">
 <input type="button" value="Disconnect" id="disconnect" onclick="disconnect()" disabled>
 <input type="button" value="Clear messages" onclick="document.getElementById('messages').value = ''">
 <hr>
+<div id="progress"></div>
 <textarea id="logs" rows="5" cols="90" placeholder="Logs appears here ..." readonly></textarea>
 <hr>
-<textarea id="messages" rows="25" cols="90" placeholder="Messages appears here ..." readonly></textarea>
-<br><br>
 <input type="text" id="username" placeholder="Enter your username here ...">
 <input type="button" value="Send message" id="send" onclick="sendMessage()" disabled>
 <br><br>
 <textarea id="message" rows="2" cols="90" placeholder="Enter your message here ..." oninput="checkText()"></textarea>
 </html>
+
+<textarea id="messages" rows="25" cols="90" Topic:" readonly></textarea>
+<br><br>

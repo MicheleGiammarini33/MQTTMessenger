@@ -24,7 +24,7 @@ function onConnect() {
 
 function onFailure(obj) {
  let date = new Date().toLocaleString().replace(",", "");
- updateMessages(date + " | " + obj.errorMessage, "logs");	
+ updateMessages(date + " | " + obj.errorMessage, "logs");
 }
 
 function disconnect() {
