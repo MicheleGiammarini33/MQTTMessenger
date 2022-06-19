@@ -84,3 +84,28 @@ footer {
   background-color: #04AA6G;
   color: white;
 }
+
+  @media only screen and (max-width: 1000px) {
+textarea[id=message],textarea[id=messages],textarea[id=logs]{
+    border-radius: 10px;
+font-family: 'Press Start 2P';font-size: 13px;
+	width:60%;
+	height:80px;
+}
+
+
+textarea[id=messages]{
+border-radius: 10px;
+font-family: 'Press Start 2P';font-size: 13px;
+	width:60%;
+	height:1300px;
+}
+
+	  input[type=number], input[type=text]  {
+	width: 252px;
+		  height:30px;
+font-family: 'Press Start 2P';font-size: 13px;
+  border-radius: 10px;
+}
+
+}
