@@ -1,7 +1,6 @@
 let client = null;
 
 function connect() {
- document.getElementById("progress").style.display ='block';
  let brokerURL = document.getElementById("brokerURL").value.trim();
  let port = parseInt(document.getElementById("port").value.trim());
  let date = new Date().toLocaleString().replace(",", "");
@@ -10,11 +9,9 @@ function connect() {
  client.onConnectionLost = onConnectionLost;
  client.onMessageArrived = onMessageArrived;
  client.connect({onSuccess: onConnect, onFailure: onFailure, useSSL: true});
-
 }
 
 function onConnect() {
- document.getElementById("progress").style.display ='none';
  let topic = document.getElementById("topic").value;
  let date = new Date().toLocaleString().replace(",", "");
  updateMessages(date + " | Subscribing to topic " + topic, "logs");
@@ -32,7 +29,6 @@ function onFailure(obj) {
 
 function disconnect() {
  client.disconnect();
- document.getElementById("progress").style.display ='none';
  let date = new Date().toLocaleString().replace(",", "");
  updateMessages(date + " | Disconnected", "logs");
  document.getElementById("disconnect").disabled = true;
@@ -78,8 +74,6 @@ function checkText() {
    document.getElementById("send").disabled = true;
  }
 }
-
-
 
 
 
