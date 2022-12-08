@@ -2,18 +2,22 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>MQTT Messenger v1.0.8</title>
+<title>MQTT Messenger v1.1.0</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.1.0/paho-mqtt.min.js"></script>
 <script src="script.js"></script>
 <link rel="stylesheet" type="text/css" href="style.css"/>
 </head>
-MQTT Messenger v1.0.8
+MQTT Messenger v1.1.0
 <br><br>
 <label>Broker URL:</label><input type="text" id="brokerURL">
 <br><br>
-<label>Port:</label><input type="number" min="0" id="port">
+<label>WebSocket port:</label><input type="number" min="0" id="port">
 <br><br>
 <label>Topic:</label><input type="text" id="topic">
+<br><br>
+<label>Use SSL:</label><input type="checkbox" id="useSSL">
+<br><br>
+<label>Reconnect:</label><input type="checkbox" id="reconnect">
 <br><br>
 <input type="button" value="Connect" id="connect" onclick="connect()">
 <input type="button" value="Disconnect" id="disconnect" onclick="disconnect()" disabled>
@@ -28,4 +32,5 @@ MQTT Messenger v1.0.8
 <textarea id="message" rows="5" cols="90" onkeydown="onKeyPressed()" oninput="checkText()" placeholder="Enter your message here and press CTRL to send it ..."></textarea>
 <br>
 <input type="button" value="Send message" id="send" onclick="sendMessage()" disabled>
+<input type="checkbox" id="retain" disabled> Retain
 </html>

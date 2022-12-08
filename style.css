@@ -34,8 +34,8 @@ input[type=number], input[type=text]
 }
 
 label 
-{  
+{
  float: left;
- width: 90px;
+ width: 110px;
  text-align: left;
 }

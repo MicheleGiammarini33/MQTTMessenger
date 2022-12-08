@@ -5,6 +5,8 @@ function connect()
 {
  let brokerURL = document.getElementById("brokerURL").value.trim();
  let port = parseInt(document.getElementById("port").value.trim());
+ let useSSL = document.getElementById("useSSL").checked
+ let reconnect = document.getElementById("reconnect").checked
  topic = document.getElementById("topic").value.trim();
  let date = new Date().toLocaleString().replace(",", "");
  if(brokerURL === "" || isNaN(port) || topic === "")
@@ -12,17 +14,17 @@ function connect()
   updateMessages(date + " | Invalid broker URL, port or topic", "logs");
   return;
  }
- updateMessages(date + " | Connecting to " + brokerURL + " on port " + port, "logs");
+ updateMessages(date + " | Connecting to \"" + brokerURL + "\" on port \"" + port + "\" ...", "logs");
  client = new Paho.Client(brokerURL, port, "");
  client.onConnectionLost = onConnectionLost;
  client.onMessageArrived = onMessageArrived;
- client.connect({onSuccess: onSuccess, onFailure: onFailure, useSSL: true});
+ client.connect({onSuccess: onSuccess, onFailure: onFailure, useSSL: useSSL, reconnect: reconnect});
 }
 
 function onSuccess()
 {
  let date = new Date().toLocaleString().replace(",", "");
- updateMessages(date + " | Subscribing to topic " + topic, "logs");
+ updateMessages(date + " | Subscribing to topic \"" + topic + "\" ...", "logs");
  client.subscribe(topic);
  date = new Date().toLocaleString().replace(",", "");
  updateMessages(date + " | Connected", "logs");
@@ -45,6 +47,7 @@ function disconnect()
  document.getElementById("disconnect").disabled = true;
  document.getElementById("connect").disabled = false;
  document.getElementById("send").disabled = true;
+ document.getElementById("retain").disabled = true;
 }
 
 function onConnectionLost(message)
@@ -56,6 +59,7 @@ function onConnectionLost(message)
   document.getElementById("disconnect").disabled = true;
   document.getElementById("connect").disabled = false;
   document.getElementById("send").disabled = true;
+  document.getElementById("retain").disabled = true;
  }
 }
 
@@ -81,9 +85,11 @@ function sendMessage()
 {
  let username = document.getElementById("username").value.trim() !== "" ? document.getElementById("username").value.trim() : "nousername";
  let message = username + ":\n" + document.getElementById("message").value.trim();
+ let retain = document.getElementById("retain").checked
  document.getElementById("message").value = "";
  document.getElementById("send").disabled = true;
- client.publish(topic, message, 1, false);
+ document.getElementById("retain").disabled = true;
+ client.publish(topic, message, 1, retain);
 }
 
 function checkText()
@@ -92,10 +98,12 @@ function checkText()
  if(message !== "" && document.getElementById("connect").disabled)
  {
   document.getElementById("send").disabled = false;
+  document.getElementById("retain").disabled = false;
  }
  else
  {
   document.getElementById("send").disabled = true;
+  document.getElementById("retain").disabled = true;
  }
 }
 
