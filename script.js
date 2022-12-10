@@ -18,7 +18,14 @@ function connect()
  client = new Paho.Client(brokerURL, port, "");
  client.onConnectionLost = onConnectionLost;
  client.onMessageArrived = onMessageArrived;
- client.connect({onSuccess: onSuccess, onFailure: onFailure, useSSL: useSSL, reconnect: reconnect});
+ try
+ {
+  client.connect({onSuccess: onSuccess, onFailure: onFailure, useSSL: useSSL, reconnect: reconnect});
+ }
+ catch(error)
+ {
+  updateMessages(date + " | " + error.message, "logs");
+ }
 }
 
 function onSuccess()
