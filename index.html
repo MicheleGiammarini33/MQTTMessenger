@@ -2,13 +2,13 @@
 <html lang="EN">
 <head>
 <meta charset="UTF-8">
-<title>MQTT Messenger v1.1.1</title>
+<title>MQTT Messenger</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.1.0/paho-mqtt.min.js"></script>
 <script src="script.js"></script>
 <link rel="stylesheet" type="text/css" href="style.css"/>
 </head>
-MQTT Messenger v1.1.1
+MQTT Messenger
 <br><br>
 <label for="brokerURL">Broker URL:</label><input type="text" id="brokerURL" value="test.mosquitto.org">
 <br><br>
@@ -16,23 +16,21 @@ MQTT Messenger v1.1.1
 <br><br>
 <label for="topic">Topic:</label><input type="text" id="topic" value="test">
 <br><br>
+<label for="username">Username:</label><input type="text" id="username">
+<br><br>
 <label for="useSSL">Use SSL:</label><input type="checkbox" id="useSSL" checked>
 <br><br>
 <label for="reconnect">Reconnect:</label><input type="checkbox" id="reconnect" checked>
 <br><br>
 <input type="button" value="Connect" id="connect" onclick="connect()">
 <input type="button" value="Disconnect" id="disconnect" onclick="disconnect()" disabled>
-<input type="button" value="Clear messages" id="clear" onclick="clearMessages()" disabled>
+<input type="button" value="Clear" id="clear" onclick="clearMessages()" disabled>
 <br><br>
-<textarea id="logs" rows="5" cols="90" placeholder="Logs appears here ..." readonly></textarea>
+<textarea id="messages" rows="15" cols="90" readonly></textarea>
 <br><br>
-<textarea id="messages" rows="25" cols="90" placeholder="Messages appears here ..." readonly></textarea>
+<textarea id="text" rows="5" cols="90" oninput="checkText()" disabled></textarea>
 <br><br>
-<label for="username">Username:</label><input type="text" id="username">
-<br><br>
-<textarea id="message" rows="5" cols="90" onkeydown="onKeyPressed()" oninput="checkText()" placeholder="Enter your message here and press CTRL to send it ..."></textarea>
-<br>
 <label for="retain">Retain:</label><input type="checkbox" id="retain" disabled>
-<br>
-<input type="button" value="Send message" id="send" onclick="sendMessage()" disabled>
+<br><br>
+<input type="button" value="Send" id="send" onclick="sendMessage()" disabled>
 </html>

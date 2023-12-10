@@ -1,16 +1,9 @@
-body
-{
+body {
  background-color: #3c3c3c;
  color: white;
 }
 
-textarea::placeholder
-{
- color: lightgrey;
-}
-
-textarea
-{
+textarea {
  background-color: #3c3c3c;
  width: 100%;
  color: white;
@@ -18,24 +11,25 @@ textarea
  resize: none;
 }
 
-input[type=button] 
-{
+input[type=button], input[type=number], input[type=text] {
  background-color: #3c3c3c;
  color: white;
  border: 1px solid lightgrey;
+}
+
+input[type=button] {
  width: 150px;
 }
 
-input[type=number], input[type=text]
-{
- background-color: #3c3c3c;
- color: white;
- width: 252px;
- border: 1px solid lightgrey;
+input[type=number], input[type=text] {
+ width: 250px;
 }
 
-label 
-{
+input[type=button]:disabled {
+ color: lightgrey;
+}
+
+label {
  float: left;
  width: 110px;
  text-align: left;
