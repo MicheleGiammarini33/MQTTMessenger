@@ -6,7 +6,7 @@ function checkText() {
  document.getElementById("retain").disabled = disabled;
 }
 
-function afterDisconnession() {
+function afterDisconnection() {
  document.getElementById("disconnect").disabled = true;
  document.getElementById("connect").disabled = false;
  document.getElementById("text").value = "";
@@ -53,13 +53,13 @@ function onFailure(err) {
 function disconnect() {
  client.disconnect();
  console.log(new Date().toISOString() + " | Disconnected");
- afterDisconnession();
+ afterDisconnection();
 }
 
 function onConnectionLost(err) {
  if(err.errorCode === 0) { return; }
  console.error(err.errorMessage ? new Date().toISOString() + " | Connection lost: " + err.errorMessage : new Date().toISOString() + " | Connection lost");
- afterDisconnession();
+ afterDisconnection();
 }
 
 function onMessageArrived(mes) {
